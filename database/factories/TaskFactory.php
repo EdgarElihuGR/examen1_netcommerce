@@ -22,7 +22,10 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->sentence,
+            'due_date' => $this->faker->dateTimeThisMonth($max = 'now', $timezone = null),
+            'creator_user_id' => rand(1,5),
+            'assigned_user_id' => rand(1,5),
         ];
     }
 }
