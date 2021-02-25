@@ -20,9 +20,20 @@
                 </button>
             </div>
             <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-white md:border-none">        
-                <a href="#" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none">Tareas</a>
+                <a href="{{ route('tasks.index') }}" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none">Tareas</a>
                 <a href="#" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none">Usuarios</a>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-full">Login</button>
+                @auth
+                    <a href="{{ url('dashboard') }}" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none underline">
+                        Dashboard
+                    </a>
+                @else
+                    <a href="{{ url('login') }}" class="block md:inline-block text-purple-800 hover:text-gray-500 px-3 py-3 border-b-2 md:border-none underline">
+                        Login
+                    </a>
+                    <a href="{{ url('register') }}" class="block md:inline-block text-purple-800 hover:text-gray-500 px-3 py-3 border-b-2 md:border-none underline">
+                        Register
+                    </a>
+                @endif
             </div>
         </nav>
     </header>
