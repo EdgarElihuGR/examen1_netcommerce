@@ -42,6 +42,7 @@
             @yield('content')
         </div>
     </main>
+    @yield('scripts')
     <script>
         document.getElementById("hamburger").onclick = function toggleMenu() {
             const navToggle = document.getElementsByClassName("toggle");

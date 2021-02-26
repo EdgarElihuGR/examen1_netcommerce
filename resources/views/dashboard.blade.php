@@ -1,15 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-            </div>
-        </div>
+    <div class='text-center'>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl leading-none font-extrabold tracking-tight text-gray-900 mt-10 mb-8 sm:mt-14 sm:mb-10">Administrador de tareas</h1>
+        <p class="max-w-screen-xg text-lg sm:text-2xl sm:leading-10 font-medium mb-10 sm:mb-5">Bienvenid@ a la aplicación</p>
+        <p class="max-w-screen-xg text-lg sm:text-2xl sm:leading-10 font-medium mb-10 sm:mb-11">Hecho por: Edgar Elihu García Ramirez</p>
     </div>
 </x-app-layout>
