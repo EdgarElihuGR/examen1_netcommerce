@@ -18,6 +18,10 @@ Route::view('/', 'index')->name('home');
 // Tasks resource routes
 Route::resource('tasks', TaskController::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+    return view('index');
+})->name('home');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\{Task, User};
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -24,7 +26,28 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validated = $request->validate([
+            'name' => 'required|max:100',
+            'start_date' => 'required|date|after_or_equal:yesterday',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        //Save validated fields to task
+        $task = new Task;
+        $task->name = $validated['name'];
+        $task->start_date = $validated['start_date'];
+        $task->end_date = $validated['end_date'];
+
+        //Save related users to task
+        $loggedUserId = Auth::id();
+        $creator_user = User::find($loggedUserId);
+        $assigned_user = User::find($request->assigned_user);
+        $task->creator_user()->associate($creator_user);
+        $task->assigned_user()->associate($assigned_user);
+
+        $task->save();
+
+        return back();
     }
 
     /**

@@ -23,7 +23,8 @@ class TaskFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence,
-            'due_date' => $this->faker->dateTimeThisMonth($max = 'now', $timezone = null),
+            'start_date' => $this->faker->dateTimeThisMonth($max = 'now', $timezone = null),
+            'end_date' => $this->faker->dateTimeThisMonth($max = 'now', $timezone = null),
             'creator_user_id' => rand(1,5),
             'assigned_user_id' => rand(1,5),
         ];

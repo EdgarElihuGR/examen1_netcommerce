@@ -24,7 +24,7 @@
                 <a href="#" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none">Usuarios</a>
                 @auth
                     <a href="{{ url('dashboard') }}" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none underline">
-                        Dashboard
+                        Logout
                     </a>
                 @else
                     <a href="{{ url('login') }}" class="block md:inline-block text-purple-800 hover:text-gray-500 px-3 py-3 border-b-2 md:border-none underline">

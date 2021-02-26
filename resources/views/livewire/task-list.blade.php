@@ -54,11 +54,11 @@
                 </td>
 
                 <td class="px-2 py-4 whitespace-nowrap">
-                    {{ $task->created_at }}
+                    {{ $task->start_date }}
                 </td>
 
                 <td class="px-2 py-4 whitespace-nowrap">
-                    {{ $task->due_date }}
+                    {{ $task->end_date }}
                 </td>
 
                 <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500">
