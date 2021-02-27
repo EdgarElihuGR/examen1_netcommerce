@@ -26,7 +26,7 @@ class UserController extends Controller
     public function create()
     {
         //Declaration of vars in order to use the same form template
-        $user = new User;
+        $user = new User; 
         $title = "Nuevo Usuario";
         $txtButton = "Agregar";
         $route = route('users.store');
