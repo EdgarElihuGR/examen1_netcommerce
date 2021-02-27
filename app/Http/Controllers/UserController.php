@@ -29,7 +29,7 @@ class UserController extends Controller
         $user = new User;
         $title = "Nuevo Usuario";
         $txtButton = "Agregar";
-        $route = route('register');
+        $route = route('users.store');
         $roles = Role::pluck('title', 'id');
         return view('users.create', compact('user','title','txtButton','route','roles'));
     }
@@ -55,11 +55,10 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
+        $user->save();
         
         //Save roles to user
         $user->roles()->sync($request->input('roles', []));
-
-        $user->save();
 
         return redirect()->route('users.index');
     }

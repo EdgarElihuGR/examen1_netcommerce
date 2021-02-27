@@ -23,8 +23,8 @@ class CreateTasksTable extends Migration
             $table->boolean('done')->default(0);
             $table->timestamps();
 
-            $table->foreign('creator_user_id')->references('id')->on('users');
-            $table->foreign('assigned_user_id')->references('id')->on('users');
+            $table->foreign('creator_user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('assigned_user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

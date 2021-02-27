@@ -41,7 +41,17 @@
             </label>
             <select name="roles[]" id="roles" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full" multiple="multiple">
                 @foreach($roles as $id => $role)
-                    <option value="{{ $id }}"{{ in_array($id, old('roles', [])) ? ' selected' : '' }}>{{ $role }}</option>
+                    @if(count($user->roles) > 0)
+                        @foreach($user->roles as $userRole)
+                            @if($userRole->id == $id)
+                                <option value="{{ $id }}"{{ in_array($id, old('roles', [])) ? ' selected' : '' }} selected>{{ $role }}</option>
+                            @else
+                                <option value="{{ $id }}"{{ in_array($id, old('roles', [])) ? ' selected' : '' }}>{{ $role }}</option>
+                            @endif
+                        @endforeach
+                    @else
+                        <option value="{{ $id }}"{{ in_array($id, old('roles', [])) ? ' selected' : '' }}>{{ $role }}</option>
+                    @endisset
                 @endforeach
             </select>
             @error('roles')
