@@ -49,25 +49,27 @@
     </div>
     <div class="flex flex-wrap -mx-3 mb-2">
     <div class="w-full px-3">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="assigned_user">
-                Usuario asignado a la tarea
-            </label>
-            <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                name="assigned_user">
-                @isset($users)
-                    @foreach($users as $user)
-                        @isset($task->assigned_user)
-                            @if($user->id == $task->assigned_user->id)
-                            <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
+            @can('assigned_user_access')
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="assigned_user">
+                    Usuario asignado a la tarea
+                </label>
+                <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                    name="assigned_user">
+                    @isset($users)
+                        @foreach($users as $user)
+                            @isset($task->assigned_user)
+                                @if($user->id == $task->assigned_user->id)
+                                <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
+                                @else
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endif
                             @else
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endif
-                        @else
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                        @endisset
-                    @endforeach
-                @endisset
-            </select>
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endisset
+                        @endforeach
+                    @endisset
+                </select>
+            @endcan
         </div>
     </div>
     <div class="flex justify-end w-full px-3">

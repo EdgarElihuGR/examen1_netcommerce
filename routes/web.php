@@ -19,6 +19,9 @@ Route::view('/', 'index')->name('home');
 // Tasks and Users resource routes
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('tasks', TaskController::class);
+    Route::put('/tasks/{task}/complete', [TaskController::class, 'completeTask'])->name('complete-task');
+    //Search tasks
+    Route::get('/searchTask', [TaskController::class, 'search'])->name('search-task');
     Route::resource('users', UserController::class);
 });
 

@@ -1,5 +1,5 @@
 <x-app-layout>
     <div class="py-6 px-5">
-        @include("user-form")
+        @include("users.form")
     </div>
 </x-app-layout>

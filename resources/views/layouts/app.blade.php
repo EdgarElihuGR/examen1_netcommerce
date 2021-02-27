@@ -36,8 +36,12 @@
                         </button>
                     </div>
                     <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-white md:border-none">        
-                        <a href="{{ route('tasks.index') }}" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none">Tareas</a>
-                        <a href="{{ route('users.index') }}" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none">Usuarios</a>
+                        @can('task_access')
+                            <a href="{{ route('tasks.index') }}" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none">Tareas</a>
+                        @endcan
+                        @can('user_access')
+                            <a href="{{ route('users.index') }}" class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none">Usuarios</a>
+                        @endcan
                         @if (Route::has('login'))
                             @auth
                                 <!-- Logout -->
@@ -47,7 +51,7 @@
                                         onclick="event.preventDefault();
                                                 this.closest('form').submit();"
                                         class="block md:inline-block text-white hover:text-gray-500 px-3 py-3 border-b-2 md:border-none">
-                                        Logout
+                                        {{ Auth::user()->name }} - Logout
                                     </a>
                                 </form>
                             @else

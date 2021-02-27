@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\{User, Role};
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,6 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        //Admin allow only 
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $users = User::with('roles')->get();
         return view('users.index', compact('users'));
     }
@@ -25,6 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        //Admin allow only 
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         //Declaration of vars in order to use the same form template
         $user = new User; 
         $title = "Nuevo Usuario";
@@ -42,6 +48,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //Admin allow only 
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $this->validate($request, [
             'name' => 'required|max:80|string',
             'email' => 'required|unique:users',
@@ -54,7 +63,7 @@ class UserController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->save();
         
         //Save roles to user
@@ -71,6 +80,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        //Admin allow only 
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         //Declaration of vars in order to use the same form template
         $update = true;
         $title = "Actualizar Usuario";
@@ -91,6 +102,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        //Admin allow only 
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $this->validate($request, [
             'name' => 'required|max:80|string',
             'email' => 'required|unique:users,email,' . $user->id,
@@ -111,6 +125,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        //Admin allow only 
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $user->delete();
 
         return redirect()->route('users.index');
