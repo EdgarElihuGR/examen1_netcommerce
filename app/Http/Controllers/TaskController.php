@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware("auth");
-    }
     /**
      * Display a listing of the resource.
      *
@@ -109,12 +105,6 @@ class TaskController extends Controller
             'start_date' => 'required|date|after_or_equal:yesterday',
             'end_date' => 'required|date|after_or_equal:start_date',
         ]);
-
-        // $validated = $request->validate([
-        //     'name' => 'required|max:100',
-        //     'start_date' => 'required|date|after_or_equal:yesterday',
-        //     'end_date' => 'required|date|after_or_equal:start_date',
-        // ]);
 
         //Update task's fields
         $task->name = $request->name;

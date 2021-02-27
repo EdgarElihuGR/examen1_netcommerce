@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\{TaskController,UserController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'index')->name('home');
-// Tasks resource routes
-Route::resource('tasks', TaskController::class);
+
+// Tasks and Users resource routes
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('tasks', TaskController::class);
+    Route::resource('users', UserController::class);
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-//     return view('index');
-// })->name('home');
