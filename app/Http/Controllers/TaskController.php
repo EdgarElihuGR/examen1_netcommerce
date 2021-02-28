@@ -62,7 +62,7 @@ class TaskController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|max:100',
-            'start_date' => 'required|date|after_or_equal:yesterday',
+            'start_date' => 'required|date|after_or_equal:today',
             'end_date' => 'required|date|after_or_equal:start_date',
         ]);
 
@@ -136,7 +136,7 @@ class TaskController extends Controller
 
         $this->validate($request, [
             'name' => 'required|max:100|unique:tasks,name,' . $task->id,
-            'start_date' => 'required|date|after_or_equal:yesterday',
+            'start_date' => 'required|date|after_or_equal:today',
             'end_date' => 'required|date|after_or_equal:start_date',
         ]);
 
