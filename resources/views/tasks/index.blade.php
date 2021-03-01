@@ -34,13 +34,13 @@
                 </thead>
                 <tbody class="flex-1 sm:flex-none">
                     @foreach($tasks as $task)
-                        <tr class="{{ $task->done == 1 ? 'bg-green-300' : '' }} flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                            <td class="border-grey-light bg-white border p-3 text-sm">{{ $task->name }}</td>
-                            <td class="border-grey-light bg-white border p-3 text-sm">{{ $task->assigned_user->name }}</td>
-                            <td class="border-grey-light bg-white border p-3 text-sm">{{ $task->creator_user->name }}</td>
-                            <td class="border-grey-light bg-white border p-3 text-sm">{{ $task->start_date }}</td>
-                            <td class="border-grey-light bg-white border p-3 text-sm">{{ $task->end_date }}</td>
-                            <td class="border-grey-light bg-white border p-3 text-sm">
+                        <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                            <td class="{{ $task->done == 1 ? 'bg-green-300' : 'bg-white' }} border-grey-light border p-3 text-sm">{{ $task->name }}</td>
+                            <td class="{{ $task->done == 1 ? 'bg-green-300' : 'bg-white' }} border-grey-light bg-white border p-3 text-sm">{{ $task->assigned_user->name }}</td>
+                            <td class="{{ $task->done == 1 ? 'bg-green-300' : 'bg-white' }} border-grey-light bg-white border p-3 text-sm">{{ $task->creator_user->name }}</td>
+                            <td class="{{ $task->done == 1 ? 'bg-green-300' : 'bg-white' }} border-grey-light bg-white border p-3 text-sm">{{ $task->start_date }}</td>
+                            <td class="{{ $task->done == 1 ? 'bg-green-300' : 'bg-white' }} border-grey-light bg-white border p-3 text-sm">{{ $task->end_date }}</td>
+                            <td class="{{ $task->done == 1 ? 'bg-green-300' : 'bg-white' }} border-grey-light bg-white border p-3 text-sm">
                                 <div class="flex justify-start space-x-1">
                                     <button class="border-2 border-indigo-200 rounded-md p-1">
                                         @if($task->done == 0)
