@@ -12,6 +12,30 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+
+            @media (min-width: 640px) {
+                table {
+                display: inline-table !important;
+                }
+
+                thead tr:not(:first-child) {
+                display: none;
+                }
+            }
+
+            td:not(:last-child) {
+                border-bottom: 0;
+            }
+
+            th:not(:last-child) {
+                border-bottom: 2px solid rgba(0, 0, 0, .1);
+            }
+        </style>
 
         @livewireStyles
 
@@ -25,7 +49,7 @@
 
             <!-- Page Heading -->
             <header class="shadow-lg">
-                <nav class="flex flex-wrap items-center justify-between p-5 bg-green-400">
+                <nav class="flex flex-wrap items-center justify-between p-5 text-white bg-green-400">
                     <a href="{{ route('dashboard') }}">
                         ABM de Tareas
                     </a>
